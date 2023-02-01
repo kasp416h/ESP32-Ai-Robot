@@ -1,0 +1,16 @@
+#include <BluetoothSerial.h>
+
+BluetoothSerial SerialBT;
+
+void setup() {
+  Serial.begin(9600);
+  SerialBT.enableSSP();
+  SerialBT.begin("ESP32slave");
+  Serial.println("The device started in master mode, make sure remote BT device is on!");
+}
+
+void loop() {
+  if (SerialBT.available()) {
+    Serial.println(SerialBT.readString());
+  }
+}
